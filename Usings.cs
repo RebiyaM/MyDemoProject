@@ -1,0 +1,10 @@
+global using NUnit.Framework;
+global using NUnit.Framework.Interfaces;
+global using OpenQA.Selenium;
+global using OpenQA.Selenium.Interactions;
+global using OpenQA.Selenium.Support.UI;
+global using NUnit.Framework.Internal;
+global using System;
+global using TimeZoneConverter;
+global using OpenQA.Selenium.Chrome;
+global using OpenQA.Selenium.Firefox;
