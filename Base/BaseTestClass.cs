@@ -3,7 +3,7 @@
 
 namespace MyDemoProject
 {
-  //  [Parallelizable(ParallelScope.All)]
+    [Parallelizable(ParallelScope.All)]
     [TestFixture]
     public class BaseTestClass
     {

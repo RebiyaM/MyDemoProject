@@ -4,32 +4,21 @@ using System.Security.AccessControl;
 namespace MyDemoProject
 {
     [TestFixture,Order(0)]
-   // [Parallelizable(ParallelScope.All)]
-  //  [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
+    [Parallelizable(ParallelScope.All)]
+   [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
     public class DemoTests : BaseTestClass
     {
-
-        [TestCase("swell energy", 2)]
-        [TestCase("swell energy", 4)]
-        [TestCase("swell energy", 6)]
-        [TestCase("swell energy", 8)]
-        [TestCase("swell energy", 10)]
-        [TestCase("swell energy", 12)]
-        [TestCase("swell energy", 14)]
-        [Category("Smoke")]
-      //  [Ignore("bug")]
-        [Description("Verify Swell Energy's operating hours through out the week from google search")]
-        public async Task OperatingHoursTest(string searchTerm, int indexInGrid)
+        [TestCase("Service Autopilot", "(972) 728-4040")]
+        [TestCase("FieldEdge", "(800) 226-7529")]
+        [Category("Smoke")]  
+        [Description("Verify field service company phone number from google search")]
+        public async Task GoogleSearchPhoneNumberTest(string searchTerm,string expected)
         {
-            string expectedHours = "9 AM–7 PM";
-
             HomePage googleHome = new(Driver, Wait);
             googleHome.SearchFromGoogle(searchTerm);
-            if (SetUpFixture.Browser == "chrome") { Assert.IsTrue(Driver.Title.Equals("swell energy - Google Search")); }
-            
             ResultPage result = new(Driver, Wait);
-            string hourInTheWeek=result.GetOperationHours(indexInGrid);
-            Assert.That(hourInTheWeek,Is.EqualTo( expectedHours));
+            string phoneNumber=result.GetPhoneNumber();
+            Assert.That(phoneNumber, Is.EqualTo(expected));
         }
     }
 }
